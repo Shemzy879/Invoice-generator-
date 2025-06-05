@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f8f9fa;
+            --text: #333;
+            --card: #fff;
+            --border: #e2e8f0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px 20px;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .05);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        .form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+        }
+        .form button {
+            padding: 8px 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .form button:hover {
+            background-color: #3730a3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+        }
+        td {
+            background-color: white;
+        }
+        .actions {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .actions button {
+            background-color: #16a34a;
+            padding: 10px 20px;
+            columns: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background .3s;
+        }
+        .actions button:hover {
+            background-color: #15803d;
+        }
+
+        @media (max-width: 600px) {
+            .form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Invoice Generator</h2>
+    
+        <div class="form">
+            <input type="text" id="itemName" placeholder="Item name" />
+            <input type="number" id="itemQty" placeholder="Quantity" />
+            <input type="number" id="itemPrice" placeholder="Price" />
+            <button onclick="addItem()">Add Item</button>
+        </div>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price ($)</th>
+                    <th>Total ($)</th>
+                </tr>
+            </thead>
+            <tbody id="invoiceBody">
+                <!--items willl be added here -->
+            </tbody>
+        </table>
+        
+        <br>
+        <div class="actions">
+            <button id="downloadBtn">Download PDF</button>
+        </div>
+    </div>
+
+    <!--LOAD JSpdf LIBRARY FROM CDN-->
+    <script src="js/dist/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
